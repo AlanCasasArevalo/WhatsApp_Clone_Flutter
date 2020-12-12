@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/models/chat_model.dart';
 import 'package:whatsapp_clone/widgets/chat_message.dart';
 
 class ChatDetailPage extends StatefulWidget {
@@ -53,6 +54,7 @@ class _ChatDetailPageState extends State<ChatDetailPage>
     return IconTheme(
       data: IconThemeData(color: Theme.of(context).accentColor),
       child: Container(
+        padding: EdgeInsets.only(left: 16),
           child: Row(
         children: [
           Flexible(
@@ -63,6 +65,7 @@ class _ChatDetailPageState extends State<ChatDetailPage>
                 isTyped = text.length > 0;
               });
             },
+                decoration: InputDecoration.collapsed(hintText: 'Enviar mensaje'),
           )),
           IconButton(
               icon: Icon(Icons.send),
@@ -88,6 +91,8 @@ class _ChatDetailPageState extends State<ChatDetailPage>
 
     setState(() {
       _messages.insert(0, message);
+      var data = messageDataMock.firstWhere((element) => element.name == widget.name);
+      data.message = message.message;
     });
     message.animationController.forward();
   }
