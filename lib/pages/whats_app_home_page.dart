@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/pages/calls_page.dart';
 import 'package:whatsapp_clone/pages/chats_page.dart';
+import 'package:whatsapp_clone/pages/contacts_page.dart';
 import 'package:whatsapp_clone/pages/picture_page.dart';
 import 'package:whatsapp_clone/pages/status_page.dart';
 
@@ -36,6 +37,17 @@ class _WhatsAppHomePageState extends State<WhatsAppHomePage>
           ],
           controller: _tabController,
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).accentColor,
+        child: Icon(
+          Icons.message,
+          color: Colors.white,
+        ),
+        onPressed: () {
+          var route = MaterialPageRoute(builder: (BuildContext context) => ContactsPage());
+          Navigator.of(context).push(route);
+        },
       ),
     );
   }
