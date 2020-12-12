@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/models/chat_model.dart';
+import 'package:whatsapp_clone/pages/chat_detail_page.dart';
 
 class ChatsPage extends StatefulWidget {
   @override
@@ -49,6 +50,10 @@ class _ChatsPageState extends State<ChatsPage> {
         child: Text(chat.date),
         padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
       ),
+      onTap: () {
+        var route = MaterialPageRoute(builder: (BuildContext context) => ChatDetailPage(name: chat.name));
+        Navigator.of(context).push(route);
+      },
     );
   }
 }
