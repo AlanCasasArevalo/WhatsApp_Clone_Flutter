@@ -26,14 +26,29 @@ class _ChatsPageState extends State<ChatsPage> {
     );
   }
 
-  ListTile _rowTile (ChatModel chat) {
+  ListTile _rowTile(ChatModel chat) {
     return ListTile(
-      title: Text(chat.name),
+      title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+        Text(
+          chat.name,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ]),
       leading: CircleAvatar(
         backgroundImage: NetworkImage(chat.imageUrl),
       ),
-      subtitle: Text(chat.message),
+      subtitle: Container(
+        child: Text(
+          chat.message,
+        ),
+        padding: EdgeInsets.only(top: 8),
+      ),
+      trailing: Container(
+        child: Text(chat.date),
+        padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+      ),
     );
   }
-
 }
