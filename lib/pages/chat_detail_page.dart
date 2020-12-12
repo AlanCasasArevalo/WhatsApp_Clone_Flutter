@@ -33,6 +33,8 @@ class _ChatDetailPageState extends State<ChatDetailPage>
           children: [
             Flexible(
                 child: ListView.builder(
+                  padding: EdgeInsets.all(8),
+                    reverse: true,
                     itemCount: _messages.length,
                     itemBuilder: (_, index) => _messages[index])),
             Divider(
@@ -64,8 +66,9 @@ class _ChatDetailPageState extends State<ChatDetailPage>
           )),
           IconButton(
               icon: Icon(Icons.send),
-              onPressed: isTyped ? () => _handledSubmit(_textEditingController.text) : null
-          )
+              onPressed: isTyped
+                  ? () => _handledSubmit(_textEditingController.text)
+                  : null)
         ],
       )),
     );

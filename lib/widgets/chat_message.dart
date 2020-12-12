@@ -13,23 +13,36 @@ class ChatMessage extends StatelessWidget {
       sizeFactor: CurvedAnimation(
           parent: animationController, curve: Curves.fastOutSlowIn),
       child: Container(
+        margin: EdgeInsets.symmetric(vertical: 10),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
+              margin: EdgeInsets.only(left: 16, right: 16),
               child: CircleAvatar(
-                child: Text(name[0]),
+                child: Text(
+                  name[0],
+                  textAlign: TextAlign.start,
+                ),
               ),
             ),
             Expanded(
                 child: Column(
-                  children: [
-                    Text(name),
-                    Container(
-                      child: Text(message),
-                    )
-                  ],
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style: Theme.of(context).textTheme.subtitle1,
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 5),
+                  child: Text(
+                    message,
+                    overflow: TextOverflow.fade,
+                  ),
                 )
-            )
+              ],
+            ))
           ],
         ),
       ),
