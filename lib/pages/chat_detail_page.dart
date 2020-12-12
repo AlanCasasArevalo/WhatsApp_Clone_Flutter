@@ -13,8 +13,10 @@ class ChatDetailPage extends StatefulWidget {
 class _ChatDetailPageState extends State<ChatDetailPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Text(widget.name),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.name),
+      ),
     );
   }
 }

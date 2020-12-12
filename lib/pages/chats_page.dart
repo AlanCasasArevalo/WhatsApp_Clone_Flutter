@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/models/chat_model.dart';
-import 'package:whatsapp_clone/pages/chat_detail_page.dart';
+import 'package:whatsapp_clone/widgets/chat_row.dart';
 
 class ChatsPage extends StatefulWidget {
   @override
@@ -21,39 +21,9 @@ class _ChatsPageState extends State<ChatsPage> {
           Divider(
             height: 10,
           ),
-          _rowTile(messageDataMock[i])
+          ChatRow(chat: messageDataMock[i])
         ],
       ),
-    );
-  }
-
-  ListTile _rowTile(ChatModel chat) {
-    return ListTile(
-      title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-        Text(
-          chat.name,
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ]),
-      leading: CircleAvatar(
-        backgroundImage: NetworkImage(chat.imageUrl),
-      ),
-      subtitle: Container(
-        child: Text(
-          chat.message,
-        ),
-        padding: EdgeInsets.only(top: 8),
-      ),
-      trailing: Container(
-        child: Text(chat.date),
-        padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
-      ),
-      onTap: () {
-        var route = MaterialPageRoute(builder: (BuildContext context) => ChatDetailPage(name: chat.name));
-        Navigator.of(context).push(route);
-      },
     );
   }
 }
