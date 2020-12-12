@@ -10,7 +10,9 @@ class ChatDetailPage extends StatefulWidget {
   _ChatDetailPageState createState() => _ChatDetailPageState();
 }
 
-class _ChatDetailPageState extends State<ChatDetailPage> with TickerProviderStateMixin {
+class _ChatDetailPageState extends State<ChatDetailPage>
+    with TickerProviderStateMixin {
+  bool isTyped = false;
   TextEditingController _textEditingController;
   List<ChatMessage> _messages = <ChatMessage>[];
 
@@ -32,9 +34,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> with TickerProviderStat
             Flexible(
                 child: ListView.builder(
                     itemCount: _messages.length,
-                    itemBuilder: (_, index) => _messages[index]
-                )
-            ),
+                    itemBuilder: (_, index) => _messages[index])),
             Divider(
               height: 2,
             ),
@@ -56,16 +56,26 @@ class _ChatDetailPageState extends State<ChatDetailPage> with TickerProviderStat
           Flexible(
               child: TextField(
             controller: _textEditingController,
+            onChanged: (String text) {
+              setState(() {
+                isTyped = text.length > 0;
+              });
+            },
           )),
           IconButton(
               icon: Icon(Icons.send),
-              onPressed: () => _handledSubmit(_textEditingController.text))
+              onPressed: isTyped ? () => _handledSubmit(_textEditingController.text) : null
+          )
         ],
       )),
     );
   }
 
   void _handledSubmit(String text) {
+    _textEditingController.clear();
+    setState(() {
+      isTyped = false;
+    });
     ChatMessage message = ChatMessage(
       name: widget.name,
       message: text,
